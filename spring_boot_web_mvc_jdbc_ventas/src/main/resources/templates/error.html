@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        <h1 class="display-1 fw-bold">404</h1>
+        <p class="fs-3" th:text="#{msg.error}"></p>
+        <a href="../" class="btn btn-primary" th:text="#{boton.volver}"></a>
+    </div>
+</div>
+</body>
+</html>

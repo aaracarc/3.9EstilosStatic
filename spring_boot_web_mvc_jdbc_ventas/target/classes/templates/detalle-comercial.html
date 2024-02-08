@@ -1,0 +1,144 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title th:text="#{titulo.detalleComercial}"></title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h1 th:text="#{titulo.detalleComercial}"></h1>
+        </div>
+        <div class="col">
+            <form action="/comerciales">
+                <button type="submit" class="btn btn-secondary" th:text="#{boton.volver}"></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label th:text="#{label.codigo}"></label>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" th:value="${comercial.id}" readonly="readonly"/>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label th:text="#{label.nombre}"></label>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" th:value="${comercial.nombre}" readonly="readonly"/>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label th:text="#{label.apellido1}"></label>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" th:value="${comercial.apellido1}" readonly="readonly"/>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label th:text="#{label.apellido2}"></label>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" th:value="${comercial.apellido2}" readonly="readonly"/>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label th:text="#{label.comision}"></label>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" th:value="${comercial.comision}" readonly="readonly"/>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2 th:text="#{titulo.pedidos}"></h2>
+
+            <div class="d-flex justify-content-end">
+                <p th:text="#{leyenda.amarillo}"></p>
+                <div class="bg-warning" style="width: 20px; height: 20px;"></div>
+                <p th:text="#{leyenda.verde}"></p>
+                <div class="bg-success" style="width: 20px; height: 20px;"></div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col" th:text="#{label.id}"></div>
+                <div class="col" th:text="#{label.total}"></div>
+                <div class="col" th:text="#{label.fecha}"></div>
+                <div class="col" th:text="#{label.comercial}"></div>
+            </div>
+
+            <div th:each="pedido : ${listaPedidos}" class="row clearfix mb-4 border-bottom" th:classappend="${pedido.id == comercialDTO.idPedidoMinimo} ? 'bg-warning' : (${pedido.id == comercialDTO.idPedidoMaximo} ? 'bg-success' : '')">
+
+                <div class="col" th:text="${pedido.id}"></div>
+                <div class="col" th:text="${pedido.total}"></div>
+                <div class="col" th:text="${#dates.format(pedido.fecha, 'yyyy-MM-dd')}"></div>
+                <a class="col" th:href="@{'/clientes/'+${pedido.cliente.id}}" th:text="${pedido.cliente.nombre}"></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2 th:text="#{titulo.estadisticas}"></h2>
+
+            <div class="row clearfix">
+                <div class="col" th:text="#{label.media}"></div>
+                <div class="col" th:text="#{label.total}"></div>
+            </div>
+
+            <div class="row clearfix mb-4 border-bottom">
+                <div class="col" th:text="${comercialDTO.media}"></div>
+                <div class="col" th:text="${comercialDTO.total}"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2 th:text="#{titulo.cuantiaPedidos}"></h2>
+
+            <div class="row clearfix">
+                <div class="col" th:text="#{label.id}"></div>
+                <div class="col" th:text="#{label.nombre}"></div>
+                <div class="col" th:text="#{label.apellido1}"></div>
+                <div class="col" th:text="#{label.ciudad}"></div>
+            </div>
+
+            <div th:each="cliente : ${listaCliPed}" class="row clearfix mb-4 border-bottom">
+
+                <div class="col" th:text="${cliente.id}"></div>
+                <div class="col" th:text="${cliente.nombre}"></div>
+                <div class="col" th:text="${cliente.apellido1}"></div>
+                <div class="col" th:text="${cliente.ciudad}"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{titulo.inicio}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 th:text="#{titulo.bienvenido}"></h1>
+            <div class="mt-4">
+                <form action="/clientes">
+                    <button type="submit" class="btn btn-primary btn-lg mr-3" th:text="#{boton.listaClientes}"></button>
+                </form>
+                <br>
+                <form action="/comerciales">
+                    <button type="submit" class="btn btn-secondary btn-lg" th:text="#{boton.listaComerciales}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

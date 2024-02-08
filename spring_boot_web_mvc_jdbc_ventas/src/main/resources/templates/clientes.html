@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+	<meta charset="UTF-8">
+	<title th:text="#{titulo.clientes}"></title>
+</head>
+
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-12">
+			<h1 class="mt-3" th:text="#{titulo.clientes}"></h1>
+		</div>
+
+		<div class="col-12">
+			<div class="mt-3">
+				<form action="/clientes/crear">
+					<button type="submit" class="btn btn-primary" th:text="#{boton.crear}"></button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="row clearfix">
+		<div class="col" th:text="#{label.id}"></div>
+		<div class="col" th:text="#{label.nombre}"></div>
+		<div class="col" th:text="#{label.apellido1}"></div>
+		<div class="col" th:text="#{label.apellido2}"></div>
+		<div class="col" th:text="#{label.ciudad}"></div>
+		<div class="col" th:text="#{label.categoria}"></div>
+		<div class="col" th:text="#{label.accion}"></div>
+	</div>
+
+	<div th:each="cliente : ${listaClientes}" class="row clearfix mb-4 border-bottom">
+		<div th:text="${cliente.id}" class="col"></div>
+		<div th:text="${cliente.nombre}" class="col"></div>
+		<div th:text="${cliente.apellido1}" class="col"></div>
+		<div th:text="${cliente.apellido2 ?: '&nbsp;'}" class="col"></div>
+		<div th:text="${cliente.ciudad}" class="col"></div>
+		<div th:text="${cliente.categoria}" class="col"></div>
+		<div class="col">
+			<form th:action="@{/clientes/__${cliente.id}__}">
+				<button type="submit" class="btn btn-primary" th:text="#{boton.verDetalle}"></button>
+			</form>
+
+			<form th:action="@{/clientes/editar/__${cliente.id}__}">
+				<button type="submit" class="btn btn-primary" th:text="#{boton.editar}"></button>
+			</form>
+
+			<form th:action="@{/clientes/borrar/__${cliente.id}__}" method="post">
+				<button type="submit" class="btn btn-danger" th:text="#{boton.eliminar}"></button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

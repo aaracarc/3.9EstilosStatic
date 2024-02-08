@@ -1,0 +1,62 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title th:text="#{titulo.crearComercial}"></title>
+</head>
+
+<body>
+
+<div class="container mt-4">
+    <form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <h1 th:text="#{titulo.crearComercial}"></h1>
+            </div>
+            <div class="col">
+                <div>
+                    <button type="submit" class="btn btn-primary" th:text="#{boton.crear}"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label th:text="#{label.nombre}"></label>
+                <input class="form-control" th:field="*{nombre}"/>
+                <ul class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></ul>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label th:text="#{label.apellido1}"></label>
+                <input class="form-control" th:field="*{apellido1}"/>
+                <ul class="alert alert-danger" th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}"></ul>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label th:text="#{label.apellido2}"></label>
+                <input class="form-control" th:field="*{apellido2}"/>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label th:text="#{label.comision}"></label>
+                <input class="form-control" th:field="*{comision}"/>
+                <ul class="alert alert-danger" th:if="${#fields.hasErrors('comision')}" th:errors="*{comision}"></ul>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
